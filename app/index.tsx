@@ -1,17 +1,35 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { StyleSheet, Text, Pressable } from "react-native";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { TextInput } from "react-native-gesture-handler";
 
 const Home = () => {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput style={styles.input} placeholder="Input Name" />
-      <TextInput style={styles.input} placeholder="Input Age" />
+      <TextInput
+        style={styles.input}
+        placeholder="Input Name"
+        value={name}
+        onChangeText={(name) => {
+          setName(name);
+          console.log(name);
+        }}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Input Age"
+        value={age}
+        onChangeText={(age) => {
+          setAge(age);
+          console.log(age);
+        }}
+      />
       <Link href="/modal" asChild>
-        <View
+        <Pressable
           style={{
             paddingHorizontal: 25,
             paddingVertical: 10,
@@ -20,7 +38,7 @@ const Home = () => {
           }}
         >
           <Text>Submit</Text>
-        </View>
+        </Pressable>
       </Link>
     </SafeAreaView>
   );
